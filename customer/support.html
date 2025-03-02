@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support</title>
+    <link rel="stylesheet" href="../customer/customerstyle.css">
+    <script defer src="../customer/customerstyle.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #1a1a1a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: darkgreen;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        #logout {
+            background: darkgreen;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        #logout:hover {
+            background: #006400;
+        }
+        .support-container {
+            max-width: 600px;
+            margin: 80px auto 0;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border: 2px solid darkgreen;
+            text-align: left;
+        }
+        .support-container h2 {
+            color: darkgreen;
+            text-align: center;
+        }
+        .support-info {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/customer/customerindex.html">Home</a></li>
+                <li><a href="./booking_service/booking.html">Booking Service</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="previous-booking.html">Previous Booking</a></li>
+                <li><a href="support.html">Contact Support</a></li>
+            </ul>
+        </nav>
+        <div class="welcome-section">
+            <span>Welcome, <span id="username">User</span></span>
+            <button id="logout" onclick="logoutUser()">Logout</button>
+        </div>
+    </header>
+
+    <div class="support-container">
+        <h2>Contact Support</h2>
+        <p class="support-info"><strong>📞 Contact Number:</strong> +123 456 7890</p>
+        <p class="support-info"><strong>📧 Email:</strong> support@parcelexpress.com</p>
+        <p class="support-info"><strong>📍 Address:</strong> 123 Green Street, City, Country</p>
+    </div>
+
+</body>
+</html>

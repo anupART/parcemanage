@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcel Express Login</title>
+    <link rel="stylesheet" href="loginstyle.css">
+    <script defer src="loginscript.js"></script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Welcome Back</h1>
+            <p>Please login to your account</p>
+        </div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="userId">User ID</label>
+                <input type="text" id="userId" name="userId" placeholder="Enter your User ID" minlength="5" maxlength="20" required>
+                <div class="error-message" id="userIdError"></div>
+            </div>
+        
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter your password" maxlength="30" required>
+                    <span id="togglePassword" class="toggle-password" data-target="password">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaaaaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                        </svg>
+                    </span>
+                </div>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+        
+            <div class="form-group">
+                <label>Select Role:</label>
+                <div class="role-selection">
+                    <button type="button" class="role-button" data-role="customer">Customer</button>
+                    <button type="button" class="role-button" data-role="officer">Officer</button>
+                </div>
+                <!-- Hidden input to store the selected role value -->
+                <input type="hidden" id="roleInput" name="role" value="">
+            </div>
+        
+            <p id="error-message" class="error-message"></p>
+        
+            <button type="submit" class="login-button">Login</button>
+        
+            <p style="text-align: center; margin-top: 10px;">
+                Don't have an account? <a href="../register/registerindex.html" style="color: #10ac84;">Register</a>
+            </p>
+        </form>
+    </div>
+</body>
+</html>

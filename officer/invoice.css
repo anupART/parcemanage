@@ -1,0 +1,102 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black; /* Black background */
+    color: white;
+}
+
+/* Navbar styling */
+header {
+    background-color: #003300; /* Dark Green */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Invoice Box */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Centers vertically */
+}
+
+.invoice {
+    background-color: #1a1a1a; /* Dark Grey for contrast */
+    padding: 30px;
+    width: 450px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #004d00; /* Darker Green Border */
+}
+
+/* Invoice Title */
+.invoice h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Invoice Details */
+.invoice p {
+    font-size: 16px;
+    color: #ccc; /* Light Grey */
+    margin: 10px 0;
+    text-align: left;
+}
+
+/* Bold Labels */
+.invoice p strong {
+    color: white;
+}
+
+/* Print Button */
+.btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background-color: #004d00; /* Darker Green */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #006600; /* Slightly lighter green */
+}

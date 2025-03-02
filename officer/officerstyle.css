@@ -1,0 +1,146 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #000000; /* Black background */
+    color: white;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #193819; /* Dark Green */
+    color: white;
+    padding: 15px 30px;
+}
+
+/* Logo */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigation Menu */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+nav ul li a:hover {
+    background-color: #33ff33;
+    color: black;
+    border-radius: 5px;
+}
+
+/* Welcome Message */
+.welcome {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Booking Form */
+.booking-form {
+    width: 50%;
+    margin: 40px auto;
+    background: linear-gradient(135deg, #333, #000); /* Black & Grey Gradient */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Form Header */
+.booking-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #33ff33; /* Green Text */
+}
+
+/* Fieldset */
+fieldset {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #193819; /* Dark Green Border */
+    border-radius: 5px;
+}
+
+/* Legend */
+legend {
+    font-weight: bold;
+    color: #33ff33; /* Light Green */
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* Inputs & Select */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #193819; /* Dark Green Border */
+    border-radius: 5px;
+    background-color: #222; /* Dark Grey */
+    color: white;
+}
+
+/* Submit Button */
+.btn {
+    display: block;
+    width: 100%;
+    background: #33ff33; /* Green */
+    color: black;
+    padding: 10px;
+    border: 2px solid #193819; /* Dark Green Border */
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #28cc28;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .booking-form {
+        width: 90%;
+    }
+}

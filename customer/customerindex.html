@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" href="../customer/customerstyle.css">
+    <script defer src="../customer/customerstyle.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul>
+                <li><a href="/customer/customerindex.html">Home</a></li>
+                <li><a href="./booking_service/booking.html">Booking Service</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="prev_booking.html">Previous Booking</a></li>
+                <li><a href="support.html">Contact Support</a></li>
+                <li><a href="#" id="logout" onclick="logoutUser()">Logout</a></li>
+
+            </ul>
+        </nav>
+        <div class="welcome">Welcome, <span id="username">User</span></div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <h1>Welcome to Your Dashboard</h1>
+            <p>Manage your bookings, track orders, and get support easily.</p>
+        </section>
+        
+        <section class="features">
+            <div class="card">
+                <h2>Book a Parcel</h2>
+                <p>Quickly book your parcel for delivery.</p>
+                <a href="booking.html" class="btn">Book Now</a>
+            </div>
+            <div class="card">
+                <h2>Track Your Parcel</h2>
+                <p>Monitor the status of your shipment.</p>
+                <a href="tracking.html" class="btn">Track Now</a>
+            </div>
+            <div class="card">
+                <h2>Get Support</h2>
+                <p>Need help? Contact our support team.</p>
+                <a href="support.html" class="btn">Get Help</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

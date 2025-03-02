@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Status</title>
+    <link rel="stylesheet" href="tracking.css">
+    <script defer src="tracking.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul>
+                <li><a href="officer_home.html">Home</a></li>
+                <li><a href="officer_tracking.html">Tracking</a></li>
+                <li><a href="officer_delivery.html">Delivery Status</a></li>
+                <li><a href="officer_pickup.html">Pickup Scheduling</a></li>
+                <li><a href="officer_history.html">Previous Booking</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tracking-section">
+            <h1>Track Your Parcel</h1>
+            <div class="search-box">
+                <input type="text" id="customerId" placeholder="Enter Customer ID">
+                <input type="text" id="bookingId" placeholder="Enter Booking ID">
+                <button onclick="searchPackage()">Search</button>
+            </div>
+
+            <div id="statusResult">
+                <h2>Tracking Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer ID</th>
+                            <th>Status</th>
+                            <th>Last Update</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trackingTable">
+                        <!-- Results will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

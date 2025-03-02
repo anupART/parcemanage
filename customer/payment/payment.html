@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Parcel Express</title>
+    <link rel="stylesheet" href="payment.css">
+    <script defer src="payment.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul>
+                <li><a href="../customer_home.html">Home</a></li>
+                <li><a href="../booking_service/booking.html">Booking Service</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="welcome">Welcome, <span id="username">User</span></div>
+    </header>
+
+    <main>
+        <section class="payment-container">
+            <h2>Payment Details</h2>
+            <div class="payment-info">
+                <label>Bill Amount:</label>
+                <input type="text" id="billAmount" readonly>
+            </div>
+            
+            <div class="payment-method">
+                <label>Select Payment Mode:</label>
+                <select id="paymentMode">
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                </select>
+            </div>
+
+            <div class="buttons">
+                <button id="payNow" class="btn primary">Pay Now</button>
+                <button id="backToHome" class="btn secondary">Back to Boooking Service</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Parcel Express. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve the total price from localStorage
+            const totalPrice = localStorage.getItem('totalPrice');
+            document.getElementById('billAmount').value = totalPrice;
+        });
+    </script>
+</body>
+</html>

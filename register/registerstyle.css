@@ -1,0 +1,155 @@
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Body */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0b0b0b;
+    padding: 20px;
+}
+
+/* Registration Container */
+.registration-container {
+    background-color: #193819;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 15px 15px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+    transition: all 0.3s ease-in-out;
+    color: white;
+    text-align: center;
+}
+
+/* Header */
+.registration-container h1 {
+    color: #00cc00;
+    margin-bottom: 1rem;
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #00cc00;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Inputs */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #00cc00;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #222;
+    color: white;
+    transition: border 0.3s;
+}
+
+/* ✅ Fix for Address Textarea */
+.form-group textarea {
+    resize: none;  /* Prevents resizing */
+    height: 80px;  /* Fixed height */
+    overflow: auto;  /* Allows scrolling if needed */
+}
+
+/* ✅ Fix for Mobile Number (Inside Country Code) */
+.mobile-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mobile-group select {
+    width: 30%;
+    padding: 12px;
+}
+
+.mobile-group input {
+    width: 70%;
+    padding: 12px;
+}
+
+/* Password Wrapper */
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #00cc00;
+}
+
+/* ✅ Register Button */
+.register-button {
+    width: 100%;
+    background-color: #356035;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.register-button:hover {
+    background-color: #33ff33;
+}
+
+/* ✅ Redirect to Login */
+.redirect-login {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.redirect-login a {
+    color: #00cc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.redirect-login a:hover {
+    text-decoration: underline;
+}
+
+/* ✅ Responsive Design */
+@media (max-width: 480px) {
+    .registration-container {
+        padding: 1.5rem;
+    }
+
+    .mobile-group {
+        flex-direction: column;
+    }
+
+    .mobile-group select,
+    .mobile-group input {
+        width: 100%;
+    }
+}

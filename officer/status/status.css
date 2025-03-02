@@ -1,0 +1,188 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* Black Background */
+    color: white;
+}
+/* Header */
+header {
+    background-color: #004d00; /* Dark Green */
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+/* Navigation Bar */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+}
+nav ul li a:hover {
+    background-color: #003300; /* Darker Green */
+    border-radius: 5px;
+}
+/* Main Section */
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #222; /* Dark Grey */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+}
+/* Status Section */
+.status-section {
+    text-align: center;
+}
+.status-section h1 {
+    color: #00cc00; /* Bright Green */
+}
+/* Search Box */
+.search-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.search-box input {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #00cc00; /* Bright Green Border */
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+.search-box button {
+    background-color: #006600; /* Dark Green */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.search-box button:hover {
+    background-color: #003300; /* Darker Green */
+}
+/* Status Result */
+#statusResult {
+    text-align: left;
+    background-color: #003300; /* Dark Green */
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+/* Status Update Container */
+#statusUpdateContainer {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #004d00;
+    border-radius: 5px;
+}
+#statusSelect {
+    padding: 8px;
+    margin-right: 10px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #00cc00;
+    border-radius: 5px;
+}
+#updateStatusBtn {
+    background-color: #006600;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#updateStatusBtn:hover {
+    background-color: #003300;
+}
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #00cc00; /* Bright Green Border */
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #004d00; /* Dark Green */
+    color: white;
+}
+tbody tr:hover {
+    background-color: #004000; /* Slightly Darker Green */
+}
+/* Status colors */
+.status-picked-up {
+    color: #ffcc00; /* Yellow */
+}
+.status-in-transit {
+    color: #3399ff; /* Blue */
+}
+.status-delivered {
+    color: #00cc00; /* Green */
+}
+.status-returned {
+    color: #ff6666; /* Red */
+}
+
+.status-picked-up {
+    color: #ffcc00; /* Yellow */
+}
+.status-in-transit {
+    color: #3399ff; /* Blue */
+}
+.status-delivered {
+    color: #00cc00; /* Green */
+}
+.status-returned {
+    color: #ff6666; /* Red */
+}
+
+/* Status Update Container Styles */
+#statusUpdateContainer {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #004d00;
+    border-radius: 5px;
+}
+#statusSelect {
+    padding: 8px;
+    margin-right: 10px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #00cc00;
+    border-radius: 5px;
+}
+#updateStatusBtn {
+    background-color: #006600;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#updateStatusBtn:hover {
+    background-color: #003300;
+}

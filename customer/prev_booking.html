@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="../customer/customerstyle.css">
+    <script defer src="../customer/customerstyle.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: #1a1a1a;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: darkgreen;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        #logout {
+            background: darkgreen;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        #logout:hover {
+            background: #006400;
+        }
+        .history-container {
+            max-width: 900px;
+            margin: 50px auto 0;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border: 2px solid darkgreen;
+        }
+        .history-container h2 {
+            color: darkgreen;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #333;
+            color: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid darkgreen;
+            text-align: center;
+        }
+        th {
+            background: darkgreen;
+            color: white;
+        }
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .page-btn {
+            background: darkgreen;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .page-btn:disabled {
+            background: grey;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/customer/customerindex.html">Home</a></li>
+                <li><a href="./booking_service/booking.html">Booking Service</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="previous-booking.html">Previous Booking</a></li>
+                <li><a href="support.html">Contact Support</a></li>
+            </ul>
+        </nav>
+        <div class="welcome-section">
+            <span>Welcome, <span id="username">User</span></span>
+            <button id="logout" onclick="logoutUser()">Logout</button>
+        </div>
+    </header>
+
+    <div class="history-container">
+        <h2>Previous Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Booking ID</th>
+                    <th>Booking Date</th>
+                    <th>Receiver Name</th>
+                    <th>Delivered Address</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="bookingTable">
+                <!-- Data will be inserted dynamically -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button class="page-btn" id="prevPage" disabled>Previous</button>
+            <button class="page-btn" id="nextPage">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const recordsPerPage = 5;
+        let bookings = [];
+
+        // Dummy data (Replace with API call)
+        const dummyData = [
+            { id: "C001", bookingId: "B1001", date: "2024-02-20", receiver: "John Doe", address: "123 Street, City", amount: "$50", status: "Delivered" },
+            { id: "C001", bookingId: "B1002", date: "2024-02-22", receiver: "Jane Smith", address: "456 Avenue, City", amount: "$75", status: "In Transit" },
+            { id: "C001", bookingId: "B1003", date: "2024-02-25", receiver: "Mike Johnson", address: "789 Road, City", amount: "$60", status: "Pending" },
+            { id: "C001", bookingId: "B1004", date: "2024-02-26", receiver: "Alice Brown", address: "101 Blvd, City", amount: "$45", status: "Delivered" },
+            { id: "C001", bookingId: "B1005", date: "2024-02-28", receiver: "Charlie Davis", address: "202 Lane, City", amount: "$90", status: "Shipped" },
+            { id: "C001", bookingId: "B1006", date: "2024-03-01", receiver: "Emma Wilson", address: "303 Street, City", amount: "$30", status: "Delivered" }
+        ];
+
+        function loadBookings() {
+            const tableBody = document.getElementById("bookingTable");
+            tableBody.innerHTML = "";
+            
+            let start = (currentPage - 1) * recordsPerPage;
+            let end = start + recordsPerPage;
+            let paginatedItems = bookings.slice(start, end);
+
+            paginatedItems.forEach(booking => {
+                let row = `<tr>
+                    <td>${booking.id}</td>
+                    <td>${booking.bookingId}</td>
+                    <td>${booking.date}</td>
+                    <td>${booking.receiver}</td>
+                    <td>${booking.address}</td>
+                    <td>${booking.amount}</td>
+                    <td>${booking.status}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+
+            document.getElementById("prevPage").disabled = currentPage === 1;
+            document.getElementById("nextPage").disabled = end >= bookings.length;
+        }
+
+        document.getElementById("prevPage").addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadBookings();
+            }
+        });
+
+        document.getElementById("nextPage").addEventListener("click", () => {
+            if (currentPage * recordsPerPage < bookings.length) {
+                currentPage++;
+                loadBookings();
+            }
+        });
+
+        window.onload = () => {
+            bookings = dummyData; // Replace with API call
+            loadBookings();
+        };
+    </script>
+
+</body>
+</html>

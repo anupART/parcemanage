@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .invoice-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #0f290f;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        .invoice-container h2 {
+            text-align: center;
+            color: #33ff33;
+        }
+        .invoice-detail {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .print-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #33ff33;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .print-button:hover {
+            background-color: #28cc28;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <h2>Invoice</h2>
+        <div class="invoice-detail">Receiver Name: John Doe</div>
+        <div class="invoice-detail">Receiver Address: 123 Green Street, City</div>
+        <div class="invoice-detail">Receiver Pin: 456789</div>
+        <div class="invoice-detail">Receiver Mobile: +1234567890</div>
+        <div class="invoice-detail">Parcel Weight: 500g</div>
+        <div class="invoice-detail">Parcel Contents Description: Electronics</div>
+        <div class="invoice-detail">Parcel Delivery Type: Express</div>
+        <div class="invoice-detail">Parcel Packing Preference: Fragile</div>
+        <div class="invoice-detail">Parcel Pickup Time: 10:00 AM</div>
+        <div class="invoice-detail">Parcel Dropoff Time: 5:00 PM</div>
+        <div class="invoice-detail">Parcel Service Cost: $25</div>
+        <div class="invoice-detail">Parcel Payment Time: 09:30 AM</div>
+        <button class="print-button" onclick="window.print()">Print Invoice</button>
+    </div>
+</body>
+</html>

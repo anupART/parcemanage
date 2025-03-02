@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="officerstyle.css">
+    <style>
+        /* Additional styles for booking history page */
+        .history-container {
+            width: 90%;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #333, #000);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .search-filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .search-filters input, .search-filters button {
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #193819;
+        }
+
+        th {
+            background-color: #193819;
+            color: #33ff33;
+        }
+
+        tr:hover {
+            background-color: #222;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #193819;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #33ff33;
+            color: black;
+        }
+
+        .pagination button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        .status-delivered {
+            color: #33ff33;
+        }
+
+        .status-transit {
+            color: #ffcc00;
+        }
+
+        .status-pending {
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul>
+                <li><a href="officerindeex.html">Home</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="./status/del_status.html">Delivery Status</a></li>
+                <li><a href="officer_pickup.html">Pickup Scheduling</a></li>
+                <li><a href="officer_history.html">Previous Booking</a></li>
+                <li><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="welcome">Welcome, <span id="officerName">Officer</span></div>
+    </header>
+
+    <main>
+        <div class="history-container">
+            <h1 style="text-align: center; margin-bottom: 20px; color: #33ff33;">Booking History</h1>
+            
+            <div class="search-filters">
+                <div>
+                    <label for="customerId">Customer ID:</label>
+                    <input type="text" id="customerId" placeholder="Enter Customer ID">
+                </div>
+                <div>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate">
+                </div>
+                <div>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate">
+                </div>
+                <div>
+                    <button class="btn" onclick="searchBookings()">Search</button>
+                    <button class="btn" onclick="resetFilters()" style="margin-left: 10px;">Reset</button>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table id="bookingTable">
+                    <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Booking ID</th>
+                            <th>Booking Date</th>
+                            <th>Receiver Name</th>
+                            <th>Delivered Address</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingTableBody">
+                        <!-- Table data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination">
+                <button id="prevPage" onclick="changePage(-1)" disabled>Previous</button>
+                <span id="pageInfo">Page 1 of 1</span>
+                <button id="nextPage" onclick="changePage(1)">Next</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Sample data for demonstration
+        const bookingData = [
+            {
+                customerId: "CUST001",
+                bookingId: "BK97845",
+                bookingDate: "2025-02-15",
+                receiverName: "John Smith",
+                deliveredAddress: "123 Main St, New York, NY 10001",
+                amount: 42.50,
+                status: "Delivered"
+            },
+            {
+                customerId: "CUST001",
+                bookingId: "BK97823",
+                bookingDate: "2025-02-10",
+                receiverName: "Mary Johnson",
+                deliveredAddress: "456 Park Ave, Boston, MA 02108",
+                amount: 35.75,
+                status: "Delivered"
+            },
+            {
+                customerId: "CUST002",
+                bookingId: "BK97901",
+                bookingDate: "2025-02-28",
+                receiverName: "Robert Williams",
+                deliveredAddress: "789 Oak Dr, Chicago, IL 60007",
+                amount: 65.20,
+                status: "In Transit"
+            },
+            {
+                customerId: "CUST003",
+                bookingId: "BK97856",
+                bookingDate: "2025-02-20",
+                receiverName: "Jennifer Brown",
+                deliveredAddress: "321 Pine Rd, Miami, FL 33101",
+                amount: 28.90,
+                status: "Delivered"
+            },
+            {
+                customerId: "CUST002",
+                bookingId: "BK97888",
+                bookingDate: "2025-02-25",
+                receiverName: "Michael Davis",
+                deliveredAddress: "654 Maple St, Seattle, WA 98101",
+                amount: 52.30,
+                status: "Pending"
+            },
+            {
+                customerId: "CUST004",
+                bookingId: "BK97912",
+                bookingDate: "2025-03-01",
+                receiverName: "Susan Wilson",
+                deliveredAddress: "987 Cedar Ln, Austin, TX 78701",
+                amount: 44.75,
+                status: "In Transit"
+            },
+            {
+                customerId: "CUST005",
+                bookingId: "BK97934",
+                bookingDate: "2025-03-01",
+                receiverName: "David Taylor",
+                deliveredAddress: "159 Birch Ave, Denver, CO 80201",
+                amount: 37.20,
+                status: "Pending"
+            },
+            {
+                customerId: "CUST001",
+                bookingId: "BK97950",
+                bookingDate: "2025-03-02",
+                receiverName: "Patricia Miller",
+                deliveredAddress: "753 Elm St, Portland, OR 97201",
+                amount: 59.65,
+                status: "Pending"
+            },
+            {
+                customerId: "CUST003",
+                bookingId: "BK97965",
+                bookingDate: "2025-02-18",
+                receiverName: "James Johnson",
+                deliveredAddress: "426 Spruce Dr, Atlanta, GA 30301",
+                amount: 31.45,
+                status: "Delivered"
+            },
+            {
+                customerId: "CUST004",
+                bookingId: "BK97978",
+                bookingDate: "2025-02-22",
+                receiverName: "Linda Anderson",
+                deliveredAddress: "852 Walnut Blvd, San Diego, CA 92101",
+                amount: 48.90,
+                status: "Delivered"
+            }
+        ];
+
+        // Pagination variables
+        let currentPage = 1;
+        const rowsPerPage = 5;
+        let filteredData = [...bookingData];
+
+        // Display officer name from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const officerName = localStorage.getItem('officerName') || 'Officer';
+            document.getElementById('officerName').textContent = officerName;
+            
+            // Logout functionality
+            document.getElementById('logout').addEventListener('click', function() {
+                localStorage.removeItem('officerName');
+                window.location.href = 'index.html';
+            });
+            
+            // Initialize the table with all data
+            updateTable();
+        });
+
+        // Search functionality
+        function searchBookings() {
+            const customerId = document.getElementById('customerId').value.trim().toUpperCase();
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            
+            filteredData = bookingData.filter(booking => {
+                let matchesCustomerId = true;
+                let matchesDateRange = true;
+                
+                if (customerId) {
+                    matchesCustomerId = booking.customerId === customerId;
+                }
+                
+                if (startDate && endDate) {
+                    matchesDateRange = booking.bookingDate >= startDate && booking.bookingDate <= endDate;
+                } else if (startDate) {
+                    matchesDateRange = booking.bookingDate >= startDate;
+                } else if (endDate) {
+                    matchesDateRange = booking.bookingDate <= endDate;
+                }
+                
+                return matchesCustomerId && matchesDateRange;
+            });
+            
+            currentPage = 1;
+            updateTable();
+        }
+
+        // Reset filters
+        function resetFilters() {
+            document.getElementById('customerId').value = '';
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            
+            filteredData = [...bookingData];
+            currentPage = 1;
+            updateTable();
+        }
+
+        // Change page
+        function changePage(direction) {
+            currentPage += direction;
+            updateTable();
+        }
+
+        // Update table with current data and pagination
+        function updateTable() {
+            const tableBody = document.getElementById('bookingTableBody');
+            tableBody.innerHTML = '';
+            
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const paginatedData = filteredData.slice(start, end);
+            
+            if (paginatedData.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="7" style="text-align: center;">No bookings found</td>';
+                tableBody.appendChild(row);
+            } else {
+                paginatedData.forEach(booking => {
+                    const row = document.createElement('tr');
+                    
+                    // Add status class for color-coding
+                    let statusClass = '';
+                    if (booking.status === 'Delivered') {
+                        statusClass = 'status-delivered';
+                    } else if (booking.status === 'In Transit') {
+                        statusClass = 'status-transit';
+                    } else if (booking.status === 'Pending') {
+                        statusClass = 'status-pending';
+                    }
+                    
+                    row.innerHTML = `
+                        <td>${booking.customerId}</td>
+                        <td>${booking.bookingId}</td>
+                        <td>${booking.bookingDate}</td>
+                        <td>${booking.receiverName}</td>
+                        <td>${booking.deliveredAddress}</td>
+                        <td>$${booking.amount.toFixed(2)}</td>
+                        <td class="${statusClass}">${booking.status}</td>
+                    `;
+                    
+                    tableBody.appendChild(row);
+                });
+            }
+            
+            // Update pagination controls
+            document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages || 1}`;
+            document.getElementById('prevPage').disabled = currentPage <= 1;
+            document.getElementById('nextPage').disabled = currentPage >= totalPages;
+        }
+    </script>
+</body>
+</html>

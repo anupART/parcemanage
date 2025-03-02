@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Parcel</title>
+    <link rel="stylesheet" href="../customer/customerstyle.css">
+    <script defer src="tracking.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            margin-bottom: 30px;
+        }
+        .tracking-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border: 2px solid darkgreen;
+        }
+        .tracking-container h2 {
+            margin-bottom: 15px;
+            color: darkgreen;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid darkgreen;
+            background: #333;
+            color: white;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .track-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: darkgreen;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .track-btn:hover {
+            background-color: #006400;
+        }
+        #tracking-result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Parcel Express</div>
+        <nav>
+            <ul>
+                <li><a href="/customer/customerindex.html">Home</a></li>
+                <li><a href="./booking_service/booking.html">Booking Service</a></li>
+                <li><a href="tracking.html">Tracking</a></li>
+                <li><a href="previous-booking.html">Previous Booking</a></li>
+                <li><a href="support.html">Contact Support</a></li>
+                <li><a href="#" id="logout" onclick="logoutUser()">Logout</a></li>
+            </ul>
+        </nav>
+        <div class="welcome">Welcome, <span id="username">User</span></div>
+    </header>
+
+    <div class="tracking-container">
+        <h2>Track Your Parcel</h2>
+        <div class="form-group">
+            <label for="bookingId">Enter Booking ID (12-digit):</label>
+            <input type="text" id="bookingId" maxlength="12" placeholder="Enter Booking ID">
+        </div>
+        <button class="track-btn" onclick="trackParcel()">Search</button>
+        <p id="tracking-result"></p>
+    </div>
+</body>
+</html>
